@@ -1,0 +1,77 @@
+% v2-acmtog-sample.tex, dated March 7 2012
+% This is a sample file for ACM Transactions on Graphics
+%
+% Compilation using 'acmtog.cls' - version 1.2 (March 2012), Aptara Inc.
+% (c) 2010 Association for Computing Machinery (ACM)
+%
+% Questions/Suggestions/Feedback should be addressed to => "acmtexsupport@aptaracorp.com".
+% Users can also go through the FAQs available on the journal's submission webpage.
+%
+% Steps to compile: latex, bibtex, latex latex
+%
+% For tracking purposes => this is v1.2 - March 2012
+\documentclass{acmtog} % V1.2
+
+%\acmVolume{VV}
+%\acmNumber{N}
+%\acmYear{YYYY}
+%\acmMonth{Month}
+%\acmArticleNum{XXX}
+%\acmdoi{10.1145/XXXXXXX.YYYYYYY}
+
+\acmVolume{28}
+\acmNumber{4}
+\acmYear{2015}
+\acmMonth{September}
+\acmArticleNum{106}
+\doi{10.1145/1559755.1559763}
+
+%ISSN
+% \issn{1234-56789}
+
+% Copyright
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+%\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
+
+
+\begin{document}
+
+\markboth{Ajay Vijayakumaran Nair}{Survey of Ensemble Classifiers}
+
+\title{Survey of Ensemble Classifiers} % title
+
+\author{AJAY VIJAYAKUMARAN NAIR 
+\affil{University of North Carolina at Charlotte}
+}
+
+\keywords{Classifier, ensemble, bagging, boosting, bayes optimal classifier, adaboost}
+
+\maketitle
+
+\begin{bottomstuff}
+This report is the abstract to a full masters study report in the making required as part of the Masters in Computer Science program at UNC Charlotte.
+\end{bottomstuff}
+
+
+\begin{abstract}
+An interesting class of algorithms in the Machine Learning domain are the ensemble classification algorithms that try to improve the predictive power of weak classifiers through averaging or aggregation. The goal of this survey is to evaluate the building blocks of a typical ensemble classifier. An ensemble classifier, in most cases, performs far superior than its underlying individual base classifier. The survey begins by exploring some of the typical base classifiers that are used in an ensemble. Through the evaluation of ensemble techniques such as Bagging, Boosting and Bayes Optimal Classifier, the intuition and rationale of why an ensemble classifier outperforms a weak individual classifier is presented. An analysis of Adaboost learning classifier is also presented to review the mechanics of how an ensemble classification scheme achieves the boosted predictive power.
+\end{abstract}
+
+\section{Introduction}
+
+\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliography{acmtog-sample-bibfile}
+                                % Sample .bib file with references that match those in
+                                % the 'Specifications Document (V1.5)' as well containing
+                                % 'legacy' bibs and bibs with 'alternate codings'.
+                                % Gerry Murray - March 2012
+
+ % \received{September 2008}{March 2009}
+
+\end{document}
+% End of v2-acmtog-sample.tex (March 2012) - Gerry Murray, ACM
