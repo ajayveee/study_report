@@ -65,9 +65,17 @@ An interesting class of algorithms in the Machine Learning domain are the ensemb
 \section{Introduction}
 A typical individual base classifier, in a supervised classification scheme, tries to reduce the in sample error there by expecting the in sample error to closely reflect the out of sample error. Trying to model the hypothesis purely based on the training data set to fit often results in a complex model that reduces the in sample error but not necessarily the out of sample error. The effectiveness of a classifier is usually measured in terms of the error which is a combination of primarily two factors - Bias and Variance. For real world problems, it is not practical to reduce both of the terms at the same time. A decrease in bias often leads to an increase in variance and vice-versa.
 
-Ensemble classifiers try to solve this problem by training multiple classifiers that learn different patterns in the data and then combine the results to yield a conslusion that an otherwise individual classifier would not have been able to learn. The bagging technique does this by training multiple weak classifiers non-sequentially and later combining the predictions based on majority vote to make a decision in a binary classification problem. Boosting follows a sequential approach where a single weak classifier is trained sequentially in multiple boosting rounds to progressivley improve the model. A weak classifier is usually termed as a classifier that can predict an outcome better than chance. 
+Ensemble classifiers try to solve this problem by training multiple classifiers that learn different patterns in the data and then combine the results to yield a conclusion that an otherwise individual classifier would not have been able to learn. The bagging technique does this by training multiple weak classifiers non-sequentially and later combining the predictions based on majority vote to make a decision in a binary classification problem. Boosting follows a sequential approach where a single weak classifier is trained sequentially in multiple boosting rounds to progressivley improve the model. A weak classifier is usually termed as a classifier that can predict an outcome better than chance. 
+
+
 \section{Base Classifier}
-A typical base classifer can be any of the well known classifiers such an k-NN, decision trees, perceptron or even SVMs. For this survey, we would restrict classifiers to be any of k-NN, decision trees or perceptron to focus on the ensemble techniques. For decision tree ensembles, a decision stump, a one level decision tree, is often chosen as the weak learner.
+A typical base classifer can be any of the well known classifiers such an k-NN, decision trees, perceptron or even SVMs. For this survey, we would restrict classifiers to be any of k-NN, decision trees or perceptron to focus on the ensemble techniques. 
+
+A decision tree is a tree with nodes of the tree representing decisions based on a selected attribute of the data set. The branches are labelled with the outcome of the decision and represent the consequence of the decision made at the parent. A traversal till the leaf of the tree constitute a decision for a given data point and signifies the outcome. For decision tree ensembles, a decision stump, a one level decision tree, is often chosen as the weak learner. The decision stump consists of a single root node which constitutes a decision. 
+
+For k-NN classification algorithms, k neighbors are chosen to decide the label of a test point. Given a test data point, the classification is based on how close the given point is to its neighbors. The number of neighbors is the value of k. For higher dimensional data vectors, a distance measure such an Euclidean or Manhattan distance is used. 
+
+
 \section{Bagging}
 \section{Boosting}
 \section{Bayes Optimal Classifier}
