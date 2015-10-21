@@ -12,6 +12,7 @@
 % For tracking purposes => this is v1.2 - March 2012
 \documentclass{acmtog} % V1.2
 \usepackage{amsmath}
+
 %\acmVolume{VV}
 %\acmNumber{N}
 %\acmYear{YYYY}
@@ -57,7 +58,6 @@
 This report is the draft to a full masters study report in the making required as part of the Masters in Computer Science program at UNC Charlotte.
 \end{bottomstuff}
 
-
 \begin{abstract}
 An interesting class of algorithms in the Machine Learning domain are the ensemble classification algorithms that try to improve the predictive power of weak classifiers through averaging or aggregation. The goal of this survey is to evaluate the building blocks of a typical ensemble classifier. An ensemble classifier, in most cases, performs far superior than its underlying individual base classifier. The survey begins by exploring some of the typical base classifiers that are used in an ensemble. Through the evaluation of ensemble techniques such as Bagging, Boosting and Bayes Optimal Classifier, the intuition and rationale of why an ensemble classifier outperforms a weak individual classifier is presented. An analysis of Adaboost learning classifier is also presented to review the mechanics of how an ensemble classification scheme achieves the boosted predictive power.
 \end{abstract}
@@ -67,13 +67,14 @@ A typical individual base classifier, in a supervised classification scheme, tri
 
 Ensemble classifiers try to solve this problem by training multiple classifiers that learn different patterns in the data and then combine the results to yield a conclusion that an otherwise individual classifier would not have been able to learn. The bagging technique does this by training multiple weak classifiers non-sequentially and later combining the predictions based on majority vote to make a decision in a binary classification problem. Boosting follows a sequential approach where a single weak classifier is trained sequentially in multiple boosting rounds to progressivley improve the model. A weak classifier is usually termed as a classifier that can predict an outcome better than chance. 
 
-
 \section{Base Classifier}
 A typical base classifer can be any of the well known classifiers such an k-NN, decision trees, perceptron or even SVMs. For this survey, we would restrict classifiers to be any of k-NN, decision trees or perceptron to focus on the ensemble techniques. 
 
 A decision tree is a tree with nodes of the tree representing decisions based on a selected attribute of the data set. The branches are labelled with the outcome of the decision and represent the consequence of the decision made at the parent. A traversal till the leaf of the tree constitute a decision for a given data point and signifies the outcome. For decision tree ensembles, a decision stump, a one level decision tree, is often chosen as the weak learner. The decision stump consists of a single root node which constitutes a decision. 
 
 For k-NN classification algorithms, k neighbors are chosen to decide the label of a test point. Given a test data point, the classification is based on how close the given point is to its neighbors. The number of neighbors is the value of k. For higher dimensional data vectors, a distance measure such an Euclidean or Manhattan distance is used. 
+
+\section{Bias and Variance}
 
 
 \section{Bagging}
@@ -82,16 +83,25 @@ Bootstrap Aggregation or Bagging is an ensemble technique which averages the pre
 With $n$ bootstrap samples, $n$ classifiers are trained to predict the outcome of a test data point $x$. The final outcome is decided based on averaging of all the outcomes of individual classifiers.
 \begin{equation}
 	\bar{f}(x) = \frac{1}{n}\sum^n_{i=1} f_i(x)
-\label{eq:samplevar}
+\label{eq:baggingEq}
 \end{equation}
 
 Here, $\bar{f}(x)$ represents the bagged prediction, combining the predictions of the individual base classifiers.
 
-
 \section{Boosting}
-Boosting is also a technique which combines the output of many weak classifiers. It is similar only superficially to bagging in that boosting sequentially improves the predictive power of a weak classifier, whereas bagging involves combining outputs of many classifiers.
+Boosting is also a technique which combines the output of many weak classifiers. It is similar only superficially to bagging in that boosting sequentially improves the predictive power of a weak classifier, whereas bagging involves combining outputs of many classifiers. Boosting involves weighting the data points sequentially based on the outcome of the previous output and there by producing a series of weak classifiers.
+The below equation shows how the boosted classifier $f(x)$ arrives at its final prediction.
+\begin{equation}
+	f(x) = sign(\sum^M_{i=1} \alpha _i f_i(x))
+\label{eq:boostingEq}
+\end{equation}
+
+Here, the $\alpha _i$'s are the weights associated with each classifier. For adaboost, 
+\begin{equation}
+	\alpha _i = \frac{1}{2} \ln{\frac{1 - \epsilon _i}{\epsilon _i}}
+\label{eq:boostingAlphaEq}
+\end{equation}
 \section{Bayes Optimal Classifier}
-\section{Adaboost}
 \section{Conclusion}
 \section{References}
 \bibliographystyle{ACM-Reference-Format-Journals}
