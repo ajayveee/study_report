@@ -12,7 +12,8 @@
 % For tracking purposes => this is v1.2 - March 2012
 \documentclass{acmtog} % V1.2
 \usepackage{amsmath}
-
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 %\acmVolume{VV}
 %\acmNumber{N}
 %\acmYear{YYYY}
@@ -75,8 +76,19 @@ A decision tree is a tree with nodes of the tree representing decisions based on
 For k-NN classification algorithms, k neighbors are chosen to decide the label of a test point. Given a test data point, the classification is based on how close the given point is to its neighbors. The number of neighbors is the value of k. For higher dimensional data vectors, a distance measure such an Euclidean or Manhattan distance is used. 
 
 \section{Bias and Variance}
+Error in a classification algorithm scheme is typically expressed as the sum of bias, variance and irreducible error.
+\begin{equation}
+	E = bias^2 + variance + irreducible\ error
+\label{eq:errorEq}
+\end{equation}
 
-
+Error due the bias factor can be thought of as how far on average is our model from the expected result. Error due to variance can be thought of as how different are the predictions from each other for a given data vector. Bias and variance are important aspects that needs consideration because, trying to reduce one over the other is infact a correlation on undefitting or overfitting of the model in question. Reducing one would be by the expense of the other and in a practical scenario, a good choice would be to balance both of the error factors. 
+\begin{figure}
+	\centering
+	\def\svgwidth{\columnwidth}
+	\input{error.pdf_tex}
+	\caption{Figure depicting the relationship between total error, bias and variance}
+\end{figure}
 \section{Bagging}
 Bootstrap Aggregation or Bagging is an ensemble technique which averages the prediction over a collection of bootstrap samples. A bootstrap sample is a sampling of the training data set to build weak models from. The sampling can be either with replacement so that the generated data samples for each of the models do not conform to a predefined bias, or it can be based on a model with a gaussian noise added so that the effect of bias in the sample selection is reduced.
 
@@ -101,6 +113,38 @@ Here, the $\alpha _i$'s are the weights associated with each classifier. For ada
 	\alpha _i = \frac{1}{2} \ln{\frac{1 - \epsilon _i}{\epsilon _i}}
 \label{eq:boostingAlphaEq}
 \end{equation}
+
+\begin{figure}
+	\centering
+	\def\svgwidth{\columnwidth}
+	\input{Boosting.pdf_tex}
+	\caption{Figure depicting the boosting rounds}
+\end{figure}
+
+\subsection{Adaboost}
+Given: $(x_1, y_1), (x_2, y_2),...(x_m, y_m)$ where $x_i \epsilon X, y_i \epsilon Y = {-1, +1}$ 
+\begin{algorithm}
+	\caption{Adaboost algorithm}
+	\begin{enumerate}
+		\item Initialize $D_1(i) = \frac{1}{m}$
+		\item For $t = 1, .... T$
+			\begin{itemize}
+				\item Train base learner using distribution $D_t$
+				\item Get base classifier $f_t : X \longrightarrow R$
+				\item Choose $\alpha _t \epsilon R$
+				\item Update: 
+					\begin{equation}
+						D_{t+1}(i) = \frac{D_t(i) exp(-\alpha _t y_i h_t(x_i))}{Z_t}
+					\end{equation}
+					$Z_t$ is a normalization factor 
+			\end{itemize}
+		\item Output the final classifier:
+			\begin{equation}
+				f(x) = sign(\sum^M_{i=1} \alpha _i f_i(x))
+				\label{eq:boostingEq}
+			\end{equation}
+	\end{enumerate}
+\end{algorithm}
 \section{Bayes Optimal Classifier}
 \section{Conclusion}
 \section{References}
