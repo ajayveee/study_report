@@ -82,7 +82,13 @@ Error in a classification algorithm scheme is typically expressed as the sum of 
 \label{eq:errorEq}
 \end{equation}
 
-Error due the bias factor can be thought of as how far on average is our model from the expected result. Error due to variance can be thought of as how different are the predictions from each other for a given data vector. Bias and variance are important aspects that needs consideration because, trying to reduce one over the other is infact a correlation on undefitting or overfitting of the model in question. Reducing one would be by the expense of the other and in a practical scenario, a good choice would be to balance both of the error factors. 
+Error due the bias factor can be thought of as how far on average is our model differing from the expected result. Error due to variance can be thought of as how different are the predictions from each other for a given data vector. Bias and variance are important aspects that needs consideration because, trying to reduce one over the other is infact a correlation on undefitting or overfitting of the model in question. Reducing one would be by the expense of the other and in a practical scenario, a good choice would be to balance both of the error factors. 
+\begin{figure}
+	\centering
+	\def\svgwidth{\columnwidth}
+	\input{BiasVariance.pdf_tex}
+	\caption{Figure that explains bias and variance}
+\end{figure}
 \begin{figure}
 	\centering
 	\def\svgwidth{\columnwidth}
@@ -141,11 +147,54 @@ Given: $(x_1, y_1), (x_2, y_2),...(x_m, y_m)$ where $x_i \epsilon X, y_i \epsilo
 		\item Output the final classifier:
 			\begin{equation}
 				f(x) = sign(\sum^M_{i=1} \alpha _i f_i(x))
-				\label{eq:boostingEq}
+				\label{eq:boostingEq2}
 			\end{equation}
 	\end{enumerate}
 \end{algorithm}
 \section{Bayes Optimal Classifier}
+The Bayes Optimal Classifier is also an ensemble technique which looks at all possible hypotheses in the hypothesis space. As such, in practical scenarios, it becomes computationally expensive to do an exhaustive search of the entire hypothesis space. In machine learning contexts, what is of interest, is the best hypothesis $h$ out of the hypothesis space $H$, having observed the training data distribution $D$. The best hypothesis is the most probable hypothesis.
+
+According to Bayes Theorem,
+\begin{equation}
+	P(h|D) = \frac{P(D|h)P(h)}{P(D)}
+	\label{eq:bayesEq}
+\end{equation}
+\begin{itemize}
+	\item $P(h)$ is the prior probability of the hypothesies $h$
+	\item $P(D)$ is the probability of the data
+	\item $P(D|h)$ is the probability of the data $D$ given the hypothesis $h$
+	\item $P(h|D)$ is the probability of the hypothesis $h$ having observed the data
+\end{itemize}
+
+The most probable hypothesis also called the maximum a posteriori hypothesis (MAP) can be expressed as
+\begin{equation}
+	\begin{split}
+		h_{MAP} & = argmax_{h \epsilon H} P(h|D) \\
+		& = argmax_{h \epsilon H} \frac{P(D|h)P(h)}{P(D)} \\
+		& = argmax_{h \epsilon H} P(D|h)P(h)
+		\label{eq:mapEq}
+	\end{split}
+\end{equation}
+since $P(D)$ is a constant, dropping it from the RHS.
+
+In cases where all the hypothesis are equally likely, the above equation can further be simplified to obtain a maximum likelihood hypothesis (ML). The equation for $h_{ML}$ is given below:
+\begin{equation}
+	h_{ML} = argmax_{h \epsilon H} P(D|h)
+	\label{eq:mlEq}
+\end{equation}
+
+Now, the Bayes Optimal Classifier predicts the output by combiming the predictions of all the hypothesis which are weighed by their respective posterior probabilities.Expressed as:
+\begin{equation}
+	P(v_j|D) = \sum _{h_i \epsilon H} P(v_j|h_i) P(h_i|D)
+	\label{eq:bocEq1}
+\end{equation}
+where $P(v_j|D)$ is the probability that $v_j$ is the right classification.
+
+With this, the Bayes Optimal Classifier can be expressed as:
+\begin{equation}
+	argmax_{v_j \epsilon V} \sum _{h_i \epsilon H} P(v_j|h_i) P(h_i|D)
+	\label{eq:bocEq2}
+\end{equation}
 \section{Conclusion}
 \section{References}
 \bibliographystyle{ACM-Reference-Format-Journals}
